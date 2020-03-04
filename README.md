@@ -4,6 +4,9 @@ https://eltiempo.imfast.io/
 
 Agradecimientos / Thanks to:
 
+Dev Ed por su tutorial para construir la aplicación / Dev Ed for his tutorial to build the app  |  
+https://www.youtube.com/watch?v=wPElVpR1rwA
+
 https://openweathermap.org/ y su estupenda api / and his great api.
 
 https://github.com/erikflowers/weather-icons por los iconos / for his icons.
