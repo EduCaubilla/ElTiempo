@@ -375,7 +375,6 @@ el icono final.
           "icon": "cloudy"
         },
 
-
         "900": {
           "label": "tornado",
           "icon": "tornado"
@@ -482,15 +481,15 @@ el icono final.
 
         /* Definimos las horas para asignar que es de día */
         if (
-          date.getHours() >= sunrise.getHours() &&
-          date.getHours() < sunset.getHours()
+          date >= sunrise &&
+          date < sunset
         ) {
           newIcon = "day-" + newIcon;
         } 
         
         // o de noche
-        else if (date.getHours() >= sunset.getHours()) {
-          newIcon = "night-" + newIcon;;
+        else if (date >= sunset ) {
+          newIcon = "night-" + newIcon;
         }
 
         //Juntamos el prefijo necesario con el texto día o noche + descripción 
