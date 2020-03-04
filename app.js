@@ -2,7 +2,7 @@
 Se añade evento con las variables longitud y latitud para determinar la localización.
 Se asignan las variables de los tags del HTML donde se insertará la info sacada de la API.
 */
-window.addEventListener("load", () => {
+window.addEventListener('DOMContentLoaded', () => {
   let long;
   let lat;
   let temperaturaDescripcion = document.querySelector(
@@ -60,7 +60,7 @@ debemos hacer una segunda consulta con fetch. Y lo mismo para la descripción (d
 
         .then(data => {
           const { name } = data;
-          localizacionZona.textContent = name;
+          localizacionZona.textContent = name.toUpperCase();
         });
 
       fetch(api)
@@ -475,12 +475,25 @@ el icono final.
         //Creamos variable que busca el id del listado y lo convierte en el texto
         let newIcon = weatherIcons[code].icon;
 
-        //Por un tema de estructura, se ha de definir si es día
-        if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-          newIcon = 'day-' + newIcon;
+        //Para que se muestren los iconos apropiados se ha de definir si es día o noche
+        const date = new Date();
+        const sunrise = new Date(data.sys.sunrise * 1000); //Convertir código unix a hora
+        const sunset = new Date(data.sys.sunset * 1000);
+
+        /* Definimos las horas para asignar que es de día */
+        if (
+          date.getHours() >= sunrise.getHours() &&
+          date.getHours() < sunset.getHours()
+        ) {
+          newIcon = "day-" + newIcon;
+        } 
+        
+        // o de noche
+        else if (date.getHours() >= sunset.getHours()) {
+          newIcon = "night-" + newIcon;;
         }
 
-        //Juntamos el prefijo necesario con la definición 
+        //Juntamos el prefijo necesario con el texto día o noche + descripción 
         newIcon = prefix + newIcon;
 
         //asginamos el texto con prefijo y definición a la clase del HTML
